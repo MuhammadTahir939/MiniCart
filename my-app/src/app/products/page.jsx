@@ -2,7 +2,8 @@ import { MdDescription } from "react-icons/md";
 import ProductCard from "../components/ProductCard";
 
 async function getProducts() {
-    const res = await fetch("http://localhost:3000/api/products", { cache: "no-store" })
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://localhost:3000"
+    const res = await fetch(`${baseUrl}/api/products`, { cache: "no-store" })
     return res.json();
 }
 
