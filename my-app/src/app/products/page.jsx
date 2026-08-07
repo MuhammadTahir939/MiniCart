@@ -1,22 +1,25 @@
 import { MdDescription } from "react-icons/md";
 import ProductCard from "../components/ProductCard";
+import { getAllProducts } from "../lib/products";
 
 async function getProducts() {
     try {
-        const baseUrl =
-            process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") ??
-            (process.env.VERCEL_URL
-                ? `https://${process.env.VERCEL_URL}`
-                : "");
-        const url = baseUrl ? `${baseUrl}/api/products` : "/api/products";
-        const res = await fetch(url, { cache: "no-store" });
-        console.log("Fetching products from:", url);
-        if (!res.ok) {
-            throw new Error(`Products request failed with status ${res.status}`);
-        }
+        // const baseUrl =
+        //     process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") ??
+        //     (process.env.VERCEL_URL
+        //         ? `https://${process.env.VERCEL_URL}`
+        //         : "");
+        // const url = baseUrl ? `${baseUrl}/api/products` : "/api/products";
+        // const res = await fetch(url, { cache: "no-store" });
+        // console.log("Fetching products from:", url);
+        // if (!res.ok) {
+        //     throw new Error(`Products request failed with status ${res.status}`);
+        // }
 
-        const data = await res.json();
-        return Array.isArray(data) ? data : [];
+        // const data = await res.json();
+        // return Array.isArray(data) ? data : [];
+        const products = await getAllProducts();
+        return Array.isArray(products) ? products : [];
     } catch (error) {
         console.error("Failed to load products:", error);
         return [];
