@@ -2,7 +2,7 @@ import { MdDescription } from "react-icons/md";
 import ProductCard from "../components/ProductCard";
 
 async function getProducts() {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || `http://${process.env.VERCEL_URL}`
     const res = await fetch(`${baseUrl}/api/products`, { cache: "no-store" })
     return res.json();
 }
