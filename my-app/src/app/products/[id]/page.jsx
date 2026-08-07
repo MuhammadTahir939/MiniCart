@@ -5,14 +5,27 @@ import { FaArrowLeft } from "react-icons/fa";
 import AddToCartBox from "@/app/components/AddToCartBox";
 
 async function getProduct(id) {
-    await connectDB();
-    const product = await Product.findById(id);
-    return JSON.parse(JSON.stringify(product));
+    try {
+        await connectDB();
+        const product = await Product.findById(id).lean();
+        return product ? JSON.parse(JSON.stringify(product)) : null;
+    } catch (error) {
+        console.error("Failed to load product:", error);
+        return null;
+    }
 }
 
 export default async function ProductDetail({ params }) {
     const { id } = await params;
     const product = await getProduct(id);
+
+    if (!product) {
+        return (
+            <div className="rounded-xl border border-gray-700 bg-gray-900/60 p-8 text-gray-300">
+                This product is currently unavailable.
+            </div>
+        );
+    }
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-10">
