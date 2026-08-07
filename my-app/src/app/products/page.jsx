@@ -3,7 +3,11 @@ import ProductCard from "../components/ProductCard";
 
 async function getProducts() {
     try {
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") || process.env.VERCEL_URL?.replace(/\/$/, "");
+        const baseUrl =
+            process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") ??
+            (process.env.VERCEL_URL
+                ? `https://${process.env.VERCEL_URL}`
+                : "");
         const url = baseUrl ? `${baseUrl}/api/products` : "/api/products";
         const res = await fetch(url, { cache: "no-store" });
         console.log("Fetching products from:", url);
