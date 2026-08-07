@@ -43,9 +43,9 @@ const footer = () => {
                     </div>
                     <div className="w-1/5 flex flex-col text-gray-500 gap-2 px-2">
                         <h1 className='text-base font-bold text-white'>Support</h1>
-                        <Link href="/faq" className='text-gray-500'>FAQs</Link>
-                        <Link href="/return" className='text-gray-500'>Returns</Link>
-                        <Link href="/shipping" className='text-gray-500'>Shipping Policy</Link>
+                        <Link href="#" className='text-gray-500'>FAQs</Link>
+                        <Link href="#" className='text-gray-500'>Returns</Link>
+                        <Link href="#" className='text-gray-500'>Shipping Policy</Link>
                     </div>
                     <div className="w-1/4 flex flex-col gap-3">
                         <h1 className='font-bold text-base'>Stay Updated</h1>
