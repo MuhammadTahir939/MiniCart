@@ -6,7 +6,7 @@ async function getProducts() {
         const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") || process.env.VERCEL_URL?.replace(/\/$/, "");
         const url = baseUrl ? `${baseUrl}/api/products` : "/api/products";
         const res = await fetch(url, { cache: "no-store" });
-
+        console.log("Fetching products from:", url);
         if (!res.ok) {
             throw new Error(`Products request failed with status ${res.status}`);
         }
